@@ -21,6 +21,7 @@ class MainCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         self.collectionView.register(UINib(nibName: "DishCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CELLID")
+        self.collectionView.register(DishesCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerId")
         // Do any additional setup after loading the view, typically from a nib.
         collectionView.reloadData()
     }
@@ -36,19 +37,26 @@ class MainCollectionViewController: UICollectionViewController {
 //MARK:- DataSource
 extension MainCollectionViewController {
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return viewModel.groupedDishes.count
+        return viewModel.currentGroupDishes.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.groupedDishes[section].count
+        return viewModel.currentGroupDishes[section].count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "CELLID", for: indexPath) as! DishCollectionViewCell
-        cell.configure(dish: viewModel.groupedDishes[indexPath.section][indexPath.row])
+        cell.configure(dish: viewModel.currentGroupDishes[indexPath.section][indexPath.row])
         
         
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerId", for: indexPath) as! DishesCollectionViewHeader
+        header.sectionNameLabel.text = viewModel.sectionNames[indexPath.section]
+        
+        return header
     }
 }
 
@@ -61,5 +69,11 @@ extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 20
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: self.view.frame.width - 20, height: 40)
+    }
+    
+    
 }
 

@@ -8,18 +8,34 @@
 
 import Foundation
 
-
-class DishContainer: Decodable {
-    var dishes: [Dish] = []
+class DayByDayDishes: Decodable {
+    var dishes: [DishContainer] = []
     
     enum CodingKeys: String, CodingKey {
-        case sections = "items"
+        case dishes = "items"
     }
     
     required init(from decoder: Decoder) {
         do {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.dishes = try container.decode([Dish].self, forKey: .sections)
+            self.dishes = try container.decode([DishContainer].self, forKey: .dishes)
+        } catch let err {
+            print(err)
+        }
+    }
+}
+
+class DishContainer: Decodable {
+    var dishes: [Dish] = []
+    
+    enum CodingKeys: String, CodingKey {
+        case dishes = "items"
+    }
+    
+    required init(from decoder: Decoder) {
+        do {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.dishes = try container.decode([Dish].self, forKey: .dishes)
         } catch let err {
             print(err)
         }
@@ -33,11 +49,7 @@ class Dish: Codable {
     
     var section: Int
     
-    var grams: [Int]
-    
-    var kcal: Double
-    
-    var elements: [Double] //first - proteins, second - fats, third carbohydrates
+    var grams: [Double]
     
     private var amount: Int
     
@@ -59,8 +71,8 @@ class Dish: Codable {
         case name
         case section
         case grams
-        case kcal
-        case elements
+        //case kcal
+        //case elements
         case cost
     }
     
@@ -70,17 +82,13 @@ class Dish: Codable {
             
             self.name = try container.decode(String.self, forKey: .name)
             self.section = try container.decode(Int.self, forKey: .section)
-            self.grams = try container.decode([Int].self, forKey: .grams)
-            self.kcal = try container.decode(Double.self, forKey: .kcal)
-            self.elements = try container.decode([Double].self, forKey: .elements)
+            self.grams = try container.decode([Double].self, forKey: .grams)
             self.cost = try container.decode(Double.self, forKey: .cost)
             self.amount = 0
         } catch let err {
             self.name = ""
             self.section = 0
             self.grams = []
-            self.kcal = 0
-            self.elements = []
             self.cost = 0
             self.amount = 0
             
@@ -92,29 +100,6 @@ class Dish: Codable {
         aCoder.encode(self.name, forKey: "name")
         aCoder.encode(self.cost, forKey: "cost")
         aCoder.encode(self.section, forKey: "section")
-        aCoder.encode(self.grams, forKey: "gramms")
-        aCoder.encode(self.kcal, forKey: "kcal")
-        aCoder.encode(elements, forKey: "elements")
+        aCoder.encode(self.grams, forKey: "grams")
     }
-    
-    var proteins: Double {
-        get {
-            return elements[0]
-        }
-    }
-    
-    var fats: Double {
-        get {
-            return elements[1]
-        }
-    }
-    
-    var carbohydrates: Double {
-        get {
-            return elements[2]
-        }
-    }
-    
-    
-    
 }
