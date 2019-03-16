@@ -19,61 +19,61 @@
                 <rect key="frame" x="0.0" y="0.0" width="466" height="124"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kop-9j-y8z">
-                        <rect key="frame" x="16" y="12" width="46.5" height="50"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kop-9j-y8z">
+                        <rect key="frame" x="16" y="12" width="376" height="62"/>
+                        <string key="text">er;twerjtiweirotiopewrioptiopewrioptieopw[ritopiweorpitopwieropitopweiroptieowpritoiwe[proitweo[pritweopriptowiuiuieptueoirutoyiuoiertuyoiuertioyueiortuiyouoertupyoiuerpotuoyuerpoituyioueroituyoiueroituyourepotuypoierut</string>
                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXL-VA-D3u">
-                        <rect key="frame" x="408" y="12" width="42" height="50"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXL-VA-D3u">
+                        <rect key="frame" x="408" y="12" width="42" height="58"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="45m-P0-8Xu">
-                        <rect key="frame" x="16" y="74" width="434" height="50"/>
+                        <rect key="frame" x="16" y="82" width="434" height="34"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0VJ-hX-0PV">
-                                <rect key="frame" x="0.0" y="0.0" width="130" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="130" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i2f-5e-a0q">
-                                <rect key="frame" x="130" y="0.0" width="87" height="50"/>
+                                <rect key="frame" x="130" y="0.0" width="87" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Oa-pR-KT4">
-                                <rect key="frame" x="217" y="0.0" width="47.5" height="50"/>
-                                <state key="normal" image="002-minus"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Oa-pR-KT4">
+                                <rect key="frame" x="217" y="0.0" width="44.5" height="34"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWy-oz-Prs">
-                                <rect key="frame" x="264.5" y="0.0" width="122" height="50"/>
+                                <rect key="frame" x="261.5" y="0.0" width="128" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vkA-p7-LAG">
-                                <rect key="frame" x="386.5" y="0.0" width="47.5" height="50"/>
-                                <state key="normal" image="001-plus"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vkA-p7-LAG">
+                                <rect key="frame" x="389.5" y="0.0" width="44.5" height="34"/>
                             </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="0VJ-hX-0PV" firstAttribute="width" secondItem="45m-P0-8Xu" secondAttribute="width" multiplier="0.3" id="0R0-mN-McQ"/>
                             <constraint firstItem="i2f-5e-a0q" firstAttribute="width" secondItem="45m-P0-8Xu" secondAttribute="width" multiplier="0.2" id="8Ke-Zd-ZnN"/>
-                            <constraint firstItem="vkA-p7-LAG" firstAttribute="width" secondItem="8Oa-pR-KT4" secondAttribute="width" id="UDR-po-s9v"/>
-                            <constraint firstItem="8Oa-pR-KT4" firstAttribute="width" secondItem="45m-P0-8Xu" secondAttribute="width" multiplier="0.11" id="XOe-jc-wCJ"/>
+                            <constraint firstItem="8Oa-pR-KT4" firstAttribute="width" secondItem="45m-P0-8Xu" secondAttribute="width" multiplier="0.1" constant="1" id="V1e-iR-p95"/>
+                            <constraint firstItem="vkA-p7-LAG" firstAttribute="width" secondItem="45m-P0-8Xu" secondAttribute="width" multiplier="0.1" constant="1" id="gUi-qP-QCz"/>
                         </constraints>
                     </stackView>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="kop-9j-y8z" firstAttribute="top" secondItem="X7N-h1-DnG" secondAttribute="top" constant="12" id="3ub-cO-qZl"/>
-                <constraint firstAttribute="bottom" secondItem="45m-P0-8Xu" secondAttribute="bottom" id="4XG-73-Z1K"/>
+                <constraint firstAttribute="bottom" secondItem="45m-P0-8Xu" secondAttribute="bottom" constant="8" id="4XG-73-Z1K"/>
+                <constraint firstItem="FXL-VA-D3u" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kop-9j-y8z" secondAttribute="trailing" constant="16" id="6WO-j8-VeP"/>
                 <constraint firstItem="45m-P0-8Xu" firstAttribute="top" secondItem="FXL-VA-D3u" secondAttribute="bottom" constant="12" id="7aX-ex-BCy"/>
                 <constraint firstItem="FXL-VA-D3u" firstAttribute="top" secondItem="X7N-h1-DnG" secondAttribute="top" constant="12" id="Cxf-Ae-Cnc"/>
-                <constraint firstItem="45m-P0-8Xu" firstAttribute="top" secondItem="kop-9j-y8z" secondAttribute="bottom" constant="12" id="RuR-v1-u9y"/>
+                <constraint firstItem="45m-P0-8Xu" firstAttribute="top" secondItem="kop-9j-y8z" secondAttribute="bottom" constant="8" id="Em7-NL-SHe"/>
                 <constraint firstAttribute="trailing" secondItem="FXL-VA-D3u" secondAttribute="trailing" constant="16" id="XYi-HZ-QyB"/>
                 <constraint firstItem="kop-9j-y8z" firstAttribute="leading" secondItem="X7N-h1-DnG" secondAttribute="leading" constant="16" id="iL1-2b-h4y"/>
                 <constraint firstAttribute="trailing" secondItem="45m-P0-8Xu" secondAttribute="trailing" constant="16" id="spL-ur-Hdj"/>
@@ -89,11 +89,7 @@
                 <outlet property="grammsLabel" destination="FXL-VA-D3u" id="Ewz-Za-DUi"/>
                 <outlet property="nameLabel" destination="kop-9j-y8z" id="t1j-Rg-P1T"/>
             </connections>
-            <point key="canvasLocation" x="214.40000000000001" y="8.0959520239880067"/>
+            <point key="canvasLocation" x="86" y="4"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="001-plus" width="39" height="39"/>
-        <image name="002-minus" width="39" height="39"/>
-    </resources>
 </document>

@@ -40,6 +40,19 @@ class DishCollectionViewCell: UICollectionViewCell {
         updateAmount()
         self.addButton.addTarget(self, action: #selector(addButtonOnClick(_:)), for: .touchUpInside)
         self.decreaseButton.addTarget(self, action: #selector(decreaseButtonOnClick(_:)), for: .touchUpInside)
+        
+        self.backgroundView = UIImageView(image: UIImage(named: "grad.png"))
+        self.backgroundView?.layer.cornerRadius = 8
+        self.backgroundView?.clipsToBounds = true
+        
+        addButton.setImage(UIImage(named: "plusButton"), for: .normal)
+        decreaseButton.setImage(UIImage(named: "minusButton"), for: .normal)
+        
+        addButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
+        decreaseButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
+        
+        addButton.imageView?.tintColor = UIColor.white
+        decreaseButton.imageView?.tintColor = UIColor.white
     }
     
     @objc private func addButtonOnClick(_ sender: Any?) {
