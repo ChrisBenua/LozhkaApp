@@ -24,7 +24,7 @@ class DishesCollectionViewHeader: UICollectionViewCell {
 
         self.contentView.layer.cornerRadius = 10
         self.contentView.clipsToBounds = true
-        self.contentView.backgroundColor = UIColor.init(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 0.5)
+        self.contentView.backgroundColor = UIColor.init(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 0.7)
         self.contentView.addSubview(sectionNameLabel)
         
         sectionNameLabel.anchor(top: self.contentView.topAnchor, left: self.contentView.leftAnchor, bottom: self.contentView.bottomAnchor, right: self.rightAnchor, paddingTop: 0, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)

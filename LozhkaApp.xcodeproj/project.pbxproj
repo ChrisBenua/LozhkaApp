@@ -19,6 +19,7 @@
 		AA0BEF90223D09150063AB80 /* Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0BEF8F223D09150063AB80 /* Sections.swift */; };
 		AA0BEF92223D17F10063AB80 /* DishesCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0BEF91223D17F10063AB80 /* DishesCollectionViewHeader.swift */; };
 		AA0BEF95223D19AF0063AB80 /* Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0BEF94223D19AF0063AB80 /* Anchor.swift */; };
+		AA0BEF97223D2B9A0063AB80 /* TextHeightExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0BEF96223D2B9A0063AB80 /* TextHeightExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		AA0BEF8F223D09150063AB80 /* Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sections.swift; sourceTree = "<group>"; };
 		AA0BEF91223D17F10063AB80 /* DishesCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishesCollectionViewHeader.swift; sourceTree = "<group>"; };
 		AA0BEF94223D19AF0063AB80 /* Anchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anchor.swift; sourceTree = "<group>"; };
+		AA0BEF96223D2B9A0063AB80 /* TextHeightExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHeightExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				AA0BEF94223D19AF0063AB80 /* Anchor.swift */,
+				AA0BEF96223D2B9A0063AB80 /* TextHeightExtension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 			files = (
 				AA0BEF83223CFAE80063AB80 /* Dish.swift in Sources */,
 				AA0BEF90223D09150063AB80 /* Sections.swift in Sources */,
+				AA0BEF97223D2B9A0063AB80 /* TextHeightExtension.swift in Sources */,
 				AA0BEF95223D19AF0063AB80 /* Anchor.swift in Sources */,
 				AA0BEF72223CF59B0063AB80 /* ViewController.swift in Sources */,
 				AA0BEF86223CFEA00063AB80 /* DishCollectionViewCell.swift in Sources */,

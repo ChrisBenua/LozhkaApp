@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class DataHolder {
     public static var DishesJSON = """
@@ -406,6 +407,12 @@ class MainCollectionViewModel {
     
     var dishesByDay: [[Dish]] = [[]]
     
+    @objc func handlePanGesture(_ sender: UIPanGestureRecognizer) {
+        
+    }
+        
+    
+    
     init() {
         
         do {
@@ -423,7 +430,7 @@ class MainCollectionViewModel {
             for i in 0..<dishesByDay.count {
                 groupedByDayAndSectionDishes.append([[]])
                 let lst = groupedByDayAndSectionDishes.count - 1
-                for _ in 0..<sectionNames.count {
+                for _ in 1..<sectionNames.count {
                     groupedByDayAndSectionDishes[lst].append([])
                 }
                 for el in dishesByDay[i] {

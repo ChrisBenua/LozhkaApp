@@ -20,6 +20,8 @@ class MainCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       // self.collectionView.addGestureRecognizer(UIPanGestureRecognizer(target: self.viewModel, action: #selector(self.viewModel.handlePanGesture(_:))))
+        
         self.collectionView.register(UINib(nibName: "DishCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CELLID")
         self.collectionView.register(DishesCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerId")
         // Do any additional setup after loading the view, typically from a nib.
@@ -31,6 +33,7 @@ class MainCollectionViewController: UICollectionViewController {
 
         super.init(coder: aDecoder)
     }
+    
 }
 
 
@@ -63,7 +66,16 @@ extension MainCollectionViewController {
 //MARK:- CollectionViewFlowDelegate
 extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.width - 20, height: 80)
+        
+        
+        let text = viewModel.currentGroupDishes[indexPath.section][indexPath.row].name
+        let grams = viewModel.currentGroupDishes[indexPath.section][indexPath.row].grams.compactMap { (el) -> String in
+            "\(el)"
+        }.joined(separator: "/") + " Гр"
+        
+        let gramsWidth = grams.widthWithConstrainedHeight(height: 40, font: UIFont.systemFont(ofSize: 17))
+        
+        return CGSize(width: self.view.frame.width - 20, height: text.heightWithConstrainedWidth(width: (self.view.frame.width - 20 - gramsWidth - 30), font: UIFont.systemFont(ofSize: 19)) + 60)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
