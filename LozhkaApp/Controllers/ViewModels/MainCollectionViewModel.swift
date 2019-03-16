@@ -414,7 +414,9 @@ class MainCollectionViewModel {
     
     
     init() {
-        
+        print(Date().dayNumberOfWeek())
+        self.day = (Date().dayNumberOfWeek() + 5) % 7
+        print(self.day)
         do {
             self.dishesByDay = try JSONDecoder().decode(DayByDayDishes.self, from: DataHolder.dishesByDay.data(using: .utf8)!).dishes.compactMap({ (el) -> [Dish] in
                 el.dishes

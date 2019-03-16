@@ -20,6 +20,7 @@
 		AA0BEF92223D17F10063AB80 /* DishesCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0BEF91223D17F10063AB80 /* DishesCollectionViewHeader.swift */; };
 		AA0BEF95223D19AF0063AB80 /* Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0BEF94223D19AF0063AB80 /* Anchor.swift */; };
 		AA0BEF97223D2B9A0063AB80 /* TextHeightExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0BEF96223D2B9A0063AB80 /* TextHeightExtension.swift */; };
+		AA0BEF99223D37760063AB80 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0BEF98223D37760063AB80 /* DateExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		AA0BEF91223D17F10063AB80 /* DishesCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishesCollectionViewHeader.swift; sourceTree = "<group>"; };
 		AA0BEF94223D19AF0063AB80 /* Anchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anchor.swift; sourceTree = "<group>"; };
 		AA0BEF96223D2B9A0063AB80 /* TextHeightExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHeightExtension.swift; sourceTree = "<group>"; };
+		AA0BEF98223D37760063AB80 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 			children = (
 				AA0BEF94223D19AF0063AB80 /* Anchor.swift */,
 				AA0BEF96223D2B9A0063AB80 /* TextHeightExtension.swift */,
+				AA0BEF98223D37760063AB80 /* DateExtension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA0BEF83223CFAE80063AB80 /* Dish.swift in Sources */,
+				AA0BEF99223D37760063AB80 /* DateExtension.swift in Sources */,
 				AA0BEF90223D09150063AB80 /* Sections.swift in Sources */,
 				AA0BEF97223D2B9A0063AB80 /* TextHeightExtension.swift in Sources */,
 				AA0BEF95223D19AF0063AB80 /* Anchor.swift in Sources */,

@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class MainCollectionViewController: UICollectionViewController {
 
     private var viewModel: MainCollectionViewModel
@@ -19,8 +21,7 @@ class MainCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       // self.collectionView.addGestureRecognizer(UIPanGestureRecognizer(target: self.viewModel, action: #selector(self.viewModel.handlePanGesture(_:))))
+       //self.collectionView.addGestureRecognizer(UIPanGestureRecognizer(target: self.viewModel, action: #selector(self.viewModel.handlePanGesture(_:))))
         
         self.collectionView.register(UINib(nibName: "DishCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CELLID")
         self.collectionView.register(DishesCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerId")
@@ -32,7 +33,10 @@ class MainCollectionViewController: UICollectionViewController {
         viewModel = MainCollectionViewModel()
 
         super.init(coder: aDecoder)
+        //viewModel.view = self.collectionView
     }
+    
+
     
 }
 
@@ -88,4 +92,5 @@ extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     
 }
+
 
