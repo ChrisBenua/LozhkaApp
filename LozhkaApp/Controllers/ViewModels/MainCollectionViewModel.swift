@@ -407,30 +407,29 @@ class MainCollectionViewModel {
     
     var dishesByDay: [[Dish]] = [[]]
     
-    @objc func handlePanGesture(_ sender: UIPanGestureRecognizer) {
-        
-    }
-        
+    var dayByDayDishes: DayByDayDishes!
     
     
     init() {
         print(Date().dayNumberOfWeek())
-        self.day = (Date().dayNumberOfWeek() + 5) % 7
+        //self.day = (Date().dayNumberOfWeek() + 5) % 7
+        self.day = 5
         print(self.day)
         do {
             
             
-           /* if let savedDishes = UserDefaults.standard.getSavedDishes() {
-                self.dishesByDay = savedDishes
+           if let savedDishes = UserDefaults.standard.getSavedDishes() {
+                self.dishesByDay = savedDishes.0
+                self.dayByDayDishes = savedDishes.1
                 
-            } else {*/
-                
-                self.dishesByDay = try JSONDecoder().decode(DayByDayDishes.self, from: DataHolder.dishesByDay.data(using: .utf8)!).dishes.compactMap({ (el) -> [Dish] in
+            } else {
+                self.dayByDayDishes = try JSONDecoder().decode(DayByDayDishes.self, from: DataHolder.dishesByDay.data(using: .utf8)!)
+                self.dishesByDay = dayByDayDishes.dishes.compactMap({ (el) -> [Dish] in
                     el.dishes
                 })
                 
-                //UserDefaults.standard.saveDishes(dishes: self.dishesByDay)
-            //}
+                UserDefaults.standard.saveDishes(dishes: dayByDayDishes)
+            }
             
             
             
@@ -466,9 +465,9 @@ class MainCollectionViewModel {
 }
 
 
-extension MainCollectionViewModel: UpdateSavedDishesDelegate {
+extension MainCollectionViewModel: UpdateSavedDishesDelegate {    
     func updateDishes() {
-        //UserDefaults.standard.saveDishes(dishes: self.dishesByDay)
+        UserDefaults.standard.saveDishes(dishes: self.dayByDayDishes)
     }
     
     

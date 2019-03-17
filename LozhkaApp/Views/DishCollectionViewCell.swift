@@ -13,6 +13,10 @@ protocol UpdateSavedDishesDelegate: class {
     func updateDishes()
 }
 
+protocol DishDidChangeDelegate: class {
+    func dishDidChange(dish: Dish)
+}
+
 class DishCollectionViewCell: UICollectionViewCell {
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var grammsLabel: UILabel!
@@ -22,6 +26,8 @@ class DishCollectionViewCell: UICollectionViewCell {
     @IBOutlet private var amountLabel: UILabel!
     
     weak var delegate: UpdateSavedDishesDelegate?
+    
+    weak var didChandeDelegate: DishDidChangeDelegate?
     
     private var dish: Dish!
     
@@ -70,11 +76,13 @@ class DishCollectionViewCell: UICollectionViewCell {
         self.dish.amount += 1
         updateAmount()
         delegate?.updateDishes()
+        didChandeDelegate?.dishDidChange(dish: self.dish)
     }
     
     @objc private func decreaseButtonOnClick(_ sender: Any?) {
         self.dish.amount -= 1
         updateAmount()
         delegate?.updateDishes()
+        didChandeDelegate?.dishDidChange(dish: self.dish)
     }
 }

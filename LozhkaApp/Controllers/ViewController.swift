@@ -19,8 +19,22 @@ class MainCollectionViewController: UICollectionViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.collectionView.reloadData()
+    }
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.title = "Меню"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "shopping-cart").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(cartButtonOnClick(_:)))
+        
+        self.navigationItem.rightBarButtonItem?.tintColor = .white
+        
         self.collectionView.backgroundColor = UIColor(red: 0.15, green: 0.05, blue: 0.02, alpha: 1.0)
        // self.collectionView.addGestureRecognizer(UIPanGestureRecognizer(target: self.viewModel, action: #selector(self.viewModel.handlePanGesture(_:))))
         self.navigationController?.navigationBar.barStyle = .blackTranslucent
@@ -45,7 +59,12 @@ class MainCollectionViewController: UICollectionViewController {
         //viewModel.view = self.collectionView
     }
     
-
+    @objc func cartButtonOnClick(_ sender: Any?) {
+        let vc = CartCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        vc.viewModel = CartControllerViewModel(viewModel: self.viewModel)
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
     
 }
 
@@ -82,9 +101,7 @@ extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
         
         
         let text = viewModel.currentGroupDishes[indexPath.section][indexPath.row].name
-        let grams = viewModel.currentGroupDishes[indexPath.section][indexPath.row].grams.compactMap { (el) -> String in
-            "\(el)"
-        }.joined(separator: "/") + " Гр"
+        
         
         //let gramsWidth = grams.widthWithConstrainedHeight(height: 40, font: UIFont.systemFont(ofSize: 17))
         
@@ -98,6 +115,7 @@ extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: self.view.frame.width - 20, height: 40)
     }
+    
     
     
 }

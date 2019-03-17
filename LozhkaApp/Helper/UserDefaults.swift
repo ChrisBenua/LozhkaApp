@@ -7,25 +7,41 @@
 //
 
 import Foundation
-
+import UIKit
 
 extension UserDefaults {
+    static let savingQueue = DispatchQueue(label: "savingQueue", qos: .background)
     static let dishesKey = "DishesKeys1"
     
-    /*func saveDishes(dishes: DayByDayDishes) {
-        let data = JSONEncoder().encode(DayByDayDishes.self)
-        UserDefaults.standard.set(data, forKey: UserDefaults.dishesKey)
+    func saveDishes(dishes: DayByDayDishes) {
+        UserDefaults.savingQueue.async {
+            do {
+                let data = try JSONEncoder().encode(dishes)
+                UserDefaults.standard.set(data, forKey: UserDefaults.dishesKey)
+            } catch let err {
+                print(err)
+            }
+        }
     }
     
-    func getSavedDishes() -> [[Dish]]? {
+    func getSavedDishes() -> ([[Dish]], DayByDayDishes)? {
         guard let data = UserDefaults.standard.data(forKey: UserDefaults.dishesKey) else { return nil }
         do {
-            let dishes = try (NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [[Dish]])
+            let dishes = try JSONDecoder().decode(DayByDayDishes.self, from: data)
+            
+            var ans = [[Dish]]()
+            
+            for dishContainer in dishes.dishes {
+                ans.append([])
+                for dish in dishContainer.dishes {
+                    ans[ans.count - 1].append(dish)
+                }
+            }
         
-        return dishes
+            return (ans, dishes)
         } catch let err {
             print(err)
             return nil
         }
-    }*/
+    }
 }

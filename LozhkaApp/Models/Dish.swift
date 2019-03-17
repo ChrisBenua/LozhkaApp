@@ -14,6 +14,18 @@ class DayByDayDishes: Codable {
     enum CodingKeys: String, CodingKey {
         case dishes = "items"
     }
+    
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        self.dishes = try values.decode([DishContainer].self, forKey: .dishes)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(dishes, forKey: .dishes)
+        
+    }
 }
 
 class DishContainer: Codable {
@@ -23,17 +35,22 @@ class DishContainer: Codable {
         case dishes = "items"
     }
     
-    required init(from decoder: Decoder) {
-        do {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.dishes = try container.decode([Dish].self, forKey: .dishes)
-        } catch let err {
-            print(err)
-        }
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        self.dishes = try values.decode([Dish].self, forKey: .dishes)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(dishes, forKey: .dishes)
     }
 }
 
-class Dish: Codable {
+class Dish: Codable, Equatable {
+    static func == (lhs: Dish, rhs: Dish) -> Bool {
+        return (lhs.name == rhs.name && lhs.section == rhs.section)
+    }
+    
     var name: String
     
     var cost: Double
@@ -60,25 +77,27 @@ class Dish: Codable {
         case amount
     }
     
-    required init(from decoder: Decoder) {
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try values.decode(String.self, forKey: .name)
+        self.section = try values.decode(Int.self, forKey: .section)
+        self.grams = try values.decode([Double].self, forKey: .grams)
         do {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            self.name = try container.decode(String.self, forKey: .name)
-            self.section = try container.decode(Int.self, forKey: .section)
-            self.grams = try container.decode([Double].self, forKey: .grams)
-            self.cost = try container.decode(Double.self, forKey: .cost)
-            let amnt: Int? = try container.decode(Int.self, forKey: .amount)
-            self.amount = amnt ?? 0
+            let amnt: Int = try values.decode(Int.self, forKey: .amount)
+            self.amount = amnt
         } catch let err {
-            self.name = ""
-            self.section = 0
-            self.grams = []
-            self.cost = 0
             self.amount = 0
-            
-            print(err)
         }
+        self.cost = try values.decode(Double.self, forKey: .cost)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.name, forKey: .name)
+        try container.encode(self.section, forKey: .section)
+        try container.encode(self.cost, forKey: .cost)
+        try container.encode(self.amount, forKey: .amount)
+        try container.encode(self.grams, forKey: .grams)
     }
     
     init(name: String, cost: Double, section: Int, grams: [Double], amount: Int) {
@@ -87,14 +106,5 @@ class Dish: Codable {
         self.section = section
         self.grams = grams
         self.amount = amount
-    }
-    
-    
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(self.name, forKey: "name")
-        aCoder.encode(self.cost, forKey: "cost")
-        aCoder.encode(self.section, forKey: "section")
-        aCoder.encode(self.grams, forKey: "grams")
-        aCoder.encode(self.amount, forKey: "amount")
     }
 }
