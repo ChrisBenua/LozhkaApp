@@ -25,6 +25,7 @@
 		AAA96CAF223E30A700AEC2C7 /* CartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA96CAE223E30A700AEC2C7 /* CartController.swift */; };
 		AAA96CB1223E30FE00AEC2C7 /* CartControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA96CB0223E30FE00AEC2C7 /* CartControllerViewModel.swift */; };
 		AAA96CB3223E3D3800AEC2C7 /* TotalCostFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA96CB2223E3D3800AEC2C7 /* TotalCostFooter.swift */; };
+		AAED37D4223E48CB009952CE /* DaySelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAED37D3223E48CB009952CE /* DaySelectionController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		AAA96CAE223E30A700AEC2C7 /* CartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartController.swift; sourceTree = "<group>"; };
 		AAA96CB0223E30FE00AEC2C7 /* CartControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartControllerViewModel.swift; sourceTree = "<group>"; };
 		AAA96CB2223E3D3800AEC2C7 /* TotalCostFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalCostFooter.swift; sourceTree = "<group>"; };
+		AAED37D3223E48CB009952CE /* DaySelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySelectionController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				AA0BEF8C223D06D10063AB80 /* ViewModels */,
 				AA0BEF71223CF59B0063AB80 /* ViewController.swift */,
 				AAA96CAE223E30A700AEC2C7 /* CartController.swift */,
+				AAED37D3223E48CB009952CE /* DaySelectionController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				AA0BEF9B223D66870063AB80 /* UserDefaults.swift in Sources */,
 				AA0BEF97223D2B9A0063AB80 /* TextHeightExtension.swift in Sources */,
 				AA0BEF95223D19AF0063AB80 /* Anchor.swift in Sources */,
+				AAED37D4223E48CB009952CE /* DaySelectionController.swift in Sources */,
 				AA0BEF72223CF59B0063AB80 /* ViewController.swift in Sources */,
 				AAA96CB3223E3D3800AEC2C7 /* TotalCostFooter.swift in Sources */,
 				AA0BEF86223CFEA00063AB80 /* DishCollectionViewCell.swift in Sources */,

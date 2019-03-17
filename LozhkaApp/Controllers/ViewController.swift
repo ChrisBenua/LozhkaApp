@@ -14,6 +14,10 @@ class MainCollectionViewController: UICollectionViewController {
 
     private var viewModel: MainCollectionViewModel
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     init() {
         viewModel = MainCollectionViewModel()
         super.init(nibName: nil, bundle: nil)
@@ -32,6 +36,8 @@ class MainCollectionViewController: UICollectionViewController {
         
         self.navigationItem.title = "Меню"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "shopping-cart").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(cartButtonOnClick(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"), style: .plain, target: self, action: #selector(settingsButtonOnClick(_:)))
+        
         
         self.navigationItem.rightBarButtonItem?.tintColor = .white
         
@@ -64,6 +70,13 @@ class MainCollectionViewController: UICollectionViewController {
         vc.viewModel = CartControllerViewModel(viewModel: self.viewModel)
         self.navigationController?.pushViewController(vc, animated: true)
         
+    }
+    
+    @objc func settingsButtonOnClick(_ sender: Any?) {
+        let vc = DaySelectionController()
+        vc.delegate = self.viewModel
+        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

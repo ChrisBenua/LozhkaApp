@@ -472,3 +472,12 @@ extension MainCollectionViewModel: UpdateSavedDishesDelegate {
     
     
 }
+
+
+extension MainCollectionViewModel: OnDayChosenDelegate {
+    func onDayChosen(day: Int) {
+        self.day = day
+    }
+    
+    
+}
