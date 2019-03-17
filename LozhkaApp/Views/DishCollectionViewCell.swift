@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+protocol UpdateSavedDishesDelegate: class {
+    func updateDishes()
+}
+
 class DishCollectionViewCell: UICollectionViewCell {
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var grammsLabel: UILabel!
@@ -17,10 +21,12 @@ class DishCollectionViewCell: UICollectionViewCell {
     @IBOutlet private var decreaseButton: UIButton!
     @IBOutlet private var amountLabel: UILabel!
     
+    weak var delegate: UpdateSavedDishesDelegate?
+    
     private var dish: Dish!
     
     private func updateAmount() {
-        self.amountLabel.text = "\(self.dish.Amount)"
+        self.amountLabel.text = "\(self.dish.amount)"
     }
     
     override func prepareForReuse() {
@@ -30,38 +36,45 @@ class DishCollectionViewCell: UICollectionViewCell {
         
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.addButton.backgroundColor = UIColor(red: 0.19, green: 0.31, blue: 1.00, alpha: 1.0)
+        self.decreaseButton.backgroundColor = UIColor(red: 0.19, green: 0.31, blue: 1.00, alpha: 1.0)
+        self.addButton.layer.cornerRadius = self.addButton.frame.width / 2
+        self.decreaseButton.layer.cornerRadius = self.decreaseButton.frame.width / 2
+    }
+    
     func configure(dish: Dish) {
+        //self.contentView.translatesAutoresizingMaskIntoConstraints = false
+        //self.clipsToBounds = true
+        //self.layer.cornerRadius = 6
         self.dish = dish
         self.nameLabel.text = dish.name
         self.grammsLabel.text = dish.grams.compactMap({ (el) -> String in
-            "\(el)"
+            "\(Int(el))"
         }).joined(separator: "/") + " Гр"
         self.costLabel.text = "\(dish.cost / 100) руб"
         updateAmount()
         self.addButton.addTarget(self, action: #selector(addButtonOnClick(_:)), for: .touchUpInside)
         self.decreaseButton.addTarget(self, action: #selector(decreaseButtonOnClick(_:)), for: .touchUpInside)
         
-        self.backgroundView = UIImageView(image: UIImage(named: "grad.png"))
-        self.backgroundView?.layer.cornerRadius = 8
-        self.backgroundView?.clipsToBounds = true
-        
-        addButton.setImage(UIImage(named: "plusButton"), for: .normal)
-        decreaseButton.setImage(UIImage(named: "minusButton"), for: .normal)
+        //self.backgroundColor = UIColor(red: 65.0 / 1.2 / 255, green: 65.0 / 1.2 / 255, blue: 65.0 / 1.2 / 255, alpha: 1.0)
+        self.backgroundView = UIImageView(image: UIImage(named: "Rectangle"))
+        self.backgroundView?.layer.cornerRadius = 6
         
         addButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
         decreaseButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
-        
-        addButton.imageView?.tintColor = UIColor.white
-        decreaseButton.imageView?.tintColor = UIColor.white
     }
     
     @objc private func addButtonOnClick(_ sender: Any?) {
-        self.dish.Amount += 1
+        self.dish.amount += 1
         updateAmount()
+        delegate?.updateDishes()
     }
     
     @objc private func decreaseButtonOnClick(_ sender: Any?) {
-        self.dish.Amount -= 1
+        self.dish.amount -= 1
         updateAmount()
+        delegate?.updateDishes()
     }
 }

@@ -21,15 +21,21 @@ class MainCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.collectionView.backgroundColor = UIColor(red: 0.15, green: 0.05, blue: 0.02, alpha: 1.0)
        // self.collectionView.addGestureRecognizer(UIPanGestureRecognizer(target: self.viewModel, action: #selector(self.viewModel.handlePanGesture(_:))))
         self.navigationController?.navigationBar.barStyle = .blackTranslucent
         
-        self.collectionView.backgroundView = UIImageView(image: UIImage(named: "wallpaper"))
+        //self.collectionView.backgroundView = UIImageView(image: UIImage(named: "wallpaper"))
         self.collectionView.register(UINib(nibName: "DishCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CELLID")
         self.collectionView.register(DishesCollectionViewHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerId")
         // Do any additional setup after loading the view, typically from a nib.
         collectionView.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        //UserDefaults.standard.saveDishes(dishes: viewModel.dishesByDay)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -57,7 +63,7 @@ extension MainCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "CELLID", for: indexPath) as! DishCollectionViewCell
         cell.configure(dish: viewModel.currentGroupDishes[indexPath.section][indexPath.row])
-        
+        cell.delegate = self.viewModel
         
         return cell
     }
@@ -80,13 +86,13 @@ extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
             "\(el)"
         }.joined(separator: "/") + " Гр"
         
-        let gramsWidth = grams.widthWithConstrainedHeight(height: 40, font: UIFont.systemFont(ofSize: 17))
+        //let gramsWidth = grams.widthWithConstrainedHeight(height: 40, font: UIFont.systemFont(ofSize: 17))
         
-        return CGSize(width: self.view.frame.width - 20, height: text.heightWithConstrainedWidth(width: (self.view.frame.width - 20 - gramsWidth - 30), font: UIFont.systemFont(ofSize: 19)) + 60)
+        return CGSize(width: self.view.frame.width - 10, height: text.heightWithConstrainedWidth(width: (self.view.frame.width - 20 - 36), font: UIFont.systemFont(ofSize: 19)) + 102)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

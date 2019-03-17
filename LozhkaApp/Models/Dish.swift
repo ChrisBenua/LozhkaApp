@@ -8,24 +8,15 @@
 
 import Foundation
 
-class DayByDayDishes: Decodable {
+class DayByDayDishes: Codable {
     var dishes: [DishContainer] = []
     
     enum CodingKeys: String, CodingKey {
         case dishes = "items"
     }
-    
-    required init(from decoder: Decoder) {
-        do {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.dishes = try container.decode([DishContainer].self, forKey: .dishes)
-        } catch let err {
-            print(err)
-        }
-    }
 }
 
-class DishContainer: Decodable {
+class DishContainer: Codable {
     var dishes: [Dish] = []
     
     enum CodingKeys: String, CodingKey {
@@ -51,18 +42,10 @@ class Dish: Codable {
     
     var grams: [Double]
     
-    private var amount: Int
-    
-    var Amount: Int {
-        get {
-            return amount
-        }
-        set {
-            if newValue < 0 {
+    var amount: Int {
+        didSet {
+            if amount < 0 {
                 amount = 0
-            }
-            else {
-                amount = newValue
             }
         }
     }
@@ -74,6 +57,7 @@ class Dish: Codable {
         //case kcal
         //case elements
         case cost
+        case amount
     }
     
     required init(from decoder: Decoder) {
@@ -84,7 +68,8 @@ class Dish: Codable {
             self.section = try container.decode(Int.self, forKey: .section)
             self.grams = try container.decode([Double].self, forKey: .grams)
             self.cost = try container.decode(Double.self, forKey: .cost)
-            self.amount = 0
+            let amnt: Int? = try container.decode(Int.self, forKey: .amount)
+            self.amount = amnt ?? 0
         } catch let err {
             self.name = ""
             self.section = 0
@@ -96,10 +81,20 @@ class Dish: Codable {
         }
     }
     
+    init(name: String, cost: Double, section: Int, grams: [Double], amount: Int) {
+        self.name = name
+        self.cost = cost
+        self.section = section
+        self.grams = grams
+        self.amount = amount
+    }
+    
+    
     func encode(with aCoder: NSCoder) {
         aCoder.encode(self.name, forKey: "name")
         aCoder.encode(self.cost, forKey: "cost")
         aCoder.encode(self.section, forKey: "section")
         aCoder.encode(self.grams, forKey: "grams")
+        aCoder.encode(self.amount, forKey: "amount")
     }
 }

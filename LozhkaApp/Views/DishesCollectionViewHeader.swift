@@ -13,7 +13,7 @@ class DishesCollectionViewHeader: UICollectionViewCell {
     
     let sectionNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont.boldSystemFont(ofSize: 23)
         
         return label
     }()

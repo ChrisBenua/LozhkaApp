@@ -418,10 +418,19 @@ class MainCollectionViewModel {
         self.day = (Date().dayNumberOfWeek() + 5) % 7
         print(self.day)
         do {
-            self.dishesByDay = try JSONDecoder().decode(DayByDayDishes.self, from: DataHolder.dishesByDay.data(using: .utf8)!).dishes.compactMap({ (el) -> [Dish] in
-                el.dishes
-            })
             
+            
+           /* if let savedDishes = UserDefaults.standard.getSavedDishes() {
+                self.dishesByDay = savedDishes
+                
+            } else {*/
+                
+                self.dishesByDay = try JSONDecoder().decode(DayByDayDishes.self, from: DataHolder.dishesByDay.data(using: .utf8)!).dishes.compactMap({ (el) -> [Dish] in
+                    el.dishes
+                })
+                
+                //UserDefaults.standard.saveDishes(dishes: self.dishesByDay)
+            //}
             
             
             
@@ -454,4 +463,13 @@ class MainCollectionViewModel {
             print(DataHolder.oneDayDish.prefix(upTo: String.Index(encodedOffset: 342)))
         }
     }
+}
+
+
+extension MainCollectionViewModel: UpdateSavedDishesDelegate {
+    func updateDishes() {
+        //UserDefaults.standard.saveDishes(dishes: self.dishesByDay)
+    }
+    
+    
 }
