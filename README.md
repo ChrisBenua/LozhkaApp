@@ -20,7 +20,7 @@
 
 ## Авторы
 
-* **Ivan Lebedev** - *Initial work* - [IvanLebedev](https://github.com/ivanlebedev)
+* **Ivan Lebedev** - *Initial work* - [IvanLebedev](https://github.com/gudleyd)
 * **Christian** - *Initial work* - [ChrisBenua](https://github.com/ChrisBenua)
 * **Dima Zapolsky** - *Design* - [Dima](https://github.com/DimaZapolsky)
 
