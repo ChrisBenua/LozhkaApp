@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ Class container for 2-d Array of dishes
+ */
 class DayByDayDishes: Codable {
     var dishes: [DishContainer] = []
     
@@ -28,6 +31,9 @@ class DayByDayDishes: Codable {
     }
 }
 
+/**
+ Class container for array of dishes
+ */
 class DishContainer: Codable {
     var dishes: [Dish] = []
     
@@ -46,19 +52,37 @@ class DishContainer: Codable {
     }
 }
 
+/**
+ Class for representing dish in program
+ */
 class Dish: Codable, Equatable {
     static func == (lhs: Dish, rhs: Dish) -> Bool {
         return (lhs.name == rhs.name && lhs.section == rhs.section)
     }
     
+    /**
+     Dish name
+    */
     var name: String
     
+    /**
+     Dish cost
+    */
     var cost: Double
     
+    /**
+     Dish section
+    */
     var section: Int
     
+    /**
+     Dish weight
+    */
     var grams: [Double]
     
+    /**
+     Number of items user ordered this dish
+    */
     var amount: Int {
         didSet {
             if amount < 0 {
@@ -85,7 +109,7 @@ class Dish: Codable, Equatable {
         do {
             let amnt: Int = try values.decode(Int.self, forKey: .amount)
             self.amount = amnt
-        } catch let err {
+        } catch _ {
             self.amount = 0
         }
         self.cost = try values.decode(Double.self, forKey: .cost)

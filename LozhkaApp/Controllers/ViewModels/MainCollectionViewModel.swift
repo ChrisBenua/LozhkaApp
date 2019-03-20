@@ -8,7 +8,9 @@
 
 import Foundation
 import UIKit
-
+/**
+ Holds JSON formatted data
+ */
 class DataHolder {
     public static var DishesJSON = """
 
@@ -389,27 +391,57 @@ class DataHolder {
     
 }
 
+/**
+    DataProvider for MainCollectionViewController
+ */
 class MainCollectionViewModel {
+    /**
+     Maps number of day to week
+    */
+    public let intToDayOfWeek: [Int: String] = [0: "Понедельник", 1: "Вторник", 2: "Среду", 3: "Четверг", 4: "Пятницу", 5: "Субботу"]
     
+    /**
+     choosen day
+    */
     var day: Int = 0
     
+    /**
+     Dishes for current day
+    */
     var currentGroupDishes: [[Dish]] {
         return groupedByDayAndSectionDishes[day]
         //return groupedDishes
     }
     
-    var dishes: [Dish] = []
-    
+    /**
+     Dishes by day
+    */
     var groupedDishes: [[Dish]] = [[]]
+    
+    /**
+     Dishes, that are grouped by days and section
+    */
     var groupedByDayAndSectionDishes: [[[Dish]]] = []
     
+    /**
+     Sections names
+    */
     var sectionNames: [String] = []
     
+    /**
+     Grouped by day dishes
+    */
     var dishesByDay: [[Dish]] = [[]]
     
+    
+    /**
+     Current json object, that contains 2-d array
+    */
     var dayByDayDishes: DayByDayDishes!
     
-    
+    /**
+     init, that fetches data from UserDefaults or standard data from .rar in statement
+    */
     init() {
         print(Date().dayNumberOfWeek())
         //self.day = (Date().dayNumberOfWeek() + 5) % 7
@@ -447,16 +479,7 @@ class MainCollectionViewModel {
                     groupedByDayAndSectionDishes[i][el.section].append(el)
                 }
             }
-            /*
-            self.dishes = (try JSONDecoder().decode(DishContainer.self, from: DataHolder.oneDayDish.data(using: .utf8)!)).dishes
-            
-            for _ in 1..<sectionNames.count {
-                groupedDishes.append([])
-            }
-            
-            for el in dishes {
-                groupedDishes[el.section].append(el)
-            }*/
+
         } catch let err {
             print(err)
             print(DataHolder.oneDayDish.prefix(upTo: String.Index(encodedOffset: 342)))
@@ -465,19 +488,21 @@ class MainCollectionViewModel {
 }
 
 
-extension MainCollectionViewModel: UpdateSavedDishesDelegate {    
+extension MainCollectionViewModel: UpdateSavedDishesDelegate {
+    /**
+     Saves all dishes to userDefaults when needed
+    */
     func updateDishes() {
         UserDefaults.standard.saveDishes(dishes: self.dayByDayDishes)
     }
-    
-    
 }
 
 
 extension MainCollectionViewModel: OnDayChosenDelegate {
+    /**
+     Sets chosen day
+    */
     func onDayChosen(day: Int) {
         self.day = day
     }
-    
-    
 }

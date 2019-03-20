@@ -9,6 +9,9 @@
 import Foundation
 
 extension Date {
+    /**
+     Gets current day of week from 0 to 6, 0-Sunday, 6-Saturday
+     */
     func dayNumberOfWeek() -> Int {
         return Calendar.current.dateComponents([.weekday], from: self).weekday!
     }

@@ -9,14 +9,23 @@
 import Foundation
 import UIKit
 
+/**
+ Delegate for updating dishes in UserDefaults
+ */
 protocol UpdateSavedDishesDelegate: class {
     func updateDishes()
 }
 
+/**
+ Delegate to notify which dish was updated
+ */
 protocol DishDidChangeDelegate: class {
     func dishDidChange(dish: Dish)
 }
 
+/**
+ Cell class for dish
+ */
 class DishCollectionViewCell: UICollectionViewCell {
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var grammsLabel: UILabel!
@@ -29,12 +38,18 @@ class DishCollectionViewCell: UICollectionViewCell {
     
     weak var didChandeDelegate: DishDidChangeDelegate?
     
+    /**
+     Current dish
+    */
     private var dish: Dish!
     
     private func updateAmount() {
         self.amountLabel.text = "\(self.dish.amount)"
     }
     
+    /**
+     Removes targets before reuse
+     */
     override func prepareForReuse() {
         super.prepareForReuse()
         self.addButton.removeTarget(self, action: #selector(addButtonOnClick(_:)), for: .touchUpInside)
@@ -42,6 +57,9 @@ class DishCollectionViewCell: UICollectionViewCell {
         
     }
     
+    /**
+     Setting layers
+    */
     override func layoutSubviews() {
         super.layoutSubviews()
         self.addButton.backgroundColor = UIColor(red: 0.19, green: 0.31, blue: 1.00, alpha: 1.0)
@@ -50,6 +68,9 @@ class DishCollectionViewCell: UICollectionViewCell {
         self.decreaseButton.layer.cornerRadius = self.decreaseButton.frame.width / 2
     }
     
+    /**
+     Configures cell by given dish
+    */
     func configure(dish: Dish) {
         //self.contentView.translatesAutoresizingMaskIntoConstraints = false
         //self.clipsToBounds = true
@@ -72,6 +93,9 @@ class DishCollectionViewCell: UICollectionViewCell {
         decreaseButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
     }
     
+    /**
+     Handles tap on + button
+    */
     @objc private func addButtonOnClick(_ sender: Any?) {
         self.dish.amount += 1
         updateAmount()
@@ -79,6 +103,9 @@ class DishCollectionViewCell: UICollectionViewCell {
         didChandeDelegate?.dishDidChange(dish: self.dish)
     }
     
+    /**
+     Handles tap on - button
+     */
     @objc private func decreaseButtonOnClick(_ sender: Any?) {
         self.dish.amount -= 1
         updateAmount()

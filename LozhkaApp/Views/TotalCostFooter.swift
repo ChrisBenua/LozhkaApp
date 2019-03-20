@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 
-
+/**
+ Footer for cart
+ */
 class TotalCostFooter: UICollectionViewCell {
     let costLabel: UILabel = {
         let l = UILabel()
@@ -18,6 +20,9 @@ class TotalCostFooter: UICollectionViewCell {
         return l
     }()
     
+    /**
+     Current cost for items in cart
+    */
     var cost: Double = 0 {
         didSet {
             

@@ -99,6 +99,9 @@ extension CartCollectionViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension CartCollectionViewController: UpdateCartDelegate {
+    /**
+     Handles event when amount of dish in cart gets 0
+    */
     func shouldRemoveItemAt(indexPath: IndexPath?) {
         if let path = indexPath {
             self.collectionView.deleteItems(at: [path])

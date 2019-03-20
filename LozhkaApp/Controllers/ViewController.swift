@@ -12,12 +12,18 @@ import UIKit
 
 class MainCollectionViewController: UICollectionViewController {
 
+    /**
+     View's viewModel
+    */
     private var viewModel: MainCollectionViewModel
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
+    /**
+     Initializes empty View
+    */
     init() {
         viewModel = MainCollectionViewModel()
         super.init(nibName: nil, bundle: nil)
@@ -26,15 +32,16 @@ class MainCollectionViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.collectionView.reloadData()
+        
+        self.navigationItem.title = "Меню на " + self.viewModel.intToDayOfWeek[self.viewModel.day]!
     }
     
-    
-    
-    
+    /**
+     AutoLayout
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Меню"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "shopping-cart").withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(cartButtonOnClick(_:)))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "settings"), style: .plain, target: self, action: #selector(settingsButtonOnClick(_:)))
         
@@ -54,8 +61,6 @@ class MainCollectionViewController: UICollectionViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        //UserDefaults.standard.saveDishes(dishes: viewModel.dishesByDay)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -65,6 +70,9 @@ class MainCollectionViewController: UICollectionViewController {
         //viewModel.view = self.collectionView
     }
     
+    /**
+     Handles tap on cart icon
+    */
     @objc func cartButtonOnClick(_ sender: Any?) {
         let vc = CartCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
         vc.viewModel = CartControllerViewModel(viewModel: self.viewModel)
@@ -72,10 +80,12 @@ class MainCollectionViewController: UICollectionViewController {
         
     }
     
+    /**
+     Handles tap on settings
+    */
     @objc func settingsButtonOnClick(_ sender: Any?) {
-        let vc = DaySelectionController()
+        let vc = DaySelectionController(chosenDay: self.viewModel.day)
         vc.delegate = self.viewModel
-        
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

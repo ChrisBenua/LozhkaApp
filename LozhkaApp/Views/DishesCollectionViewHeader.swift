@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+/**
+ Section Header
+ */
 class DishesCollectionViewHeader: UICollectionViewCell {
     
     let sectionNameLabel: UILabel = {

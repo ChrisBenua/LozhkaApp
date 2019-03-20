@@ -7,7 +7,9 @@
 //
 
 import Foundation
-
+/**
+ Reading sections from json
+ */
 class SectionsReader: Decodable {
     var sections: [String] = []
     

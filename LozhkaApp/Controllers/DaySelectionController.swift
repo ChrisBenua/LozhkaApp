@@ -14,18 +14,69 @@ protocol OnDayChosenDelegate: class {
 }
 
 class DaySelectionController: UIViewController {
+    /**
+     Default text attributes for button
+    */
+    private let defaultAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.white]
     
+    /**
+     Selected text attributes for button
+     */
+    private let selectedAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17), NSAttributedString.Key.foregroundColor: UIColor.white]
+    
+    /**
+    Chosen button's color
+     */
+    private let chosenButtonColor = UIColor(red: 0.19, green: 0.31, blue: 1.00, alpha: 1.0)
+    
+    /**
+     Default button's color
+     */
+    private let defaultButtonColor = UIColor(red: 32.0 / 255, green: 32.0 / 255, blue: 32 / 255, alpha: 1.0)
+    
+    /**
+     Week Days
+    */
     private let weekDays = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"]
     
+    /**
+     Buttons array
+    */
     private var buttons = [UIButton]()
     
+    /**
+     delegate for handling events when chosen day changes
+    */
     weak var delegate: OnDayChosenDelegate?
     
+    /**
+     Current Chosen day
+    */
+    var currentChosenDay: Int = 0
+    
+    /**
+     Highlites chosen buttons
+     */
+    private func chooseButton(clickedButton: UIButton) {
+        for button in buttons {
+            button.backgroundColor = defaultButtonColor
+            let attr = button.attributedTitle(for: .normal)!
+            let newAttr = NSAttributedString(string: attr.string, attributes: defaultAttributes)
+            button.setAttributedTitle(newAttr, for: .normal)
+        }
+        clickedButton.backgroundColor = chosenButtonColor
+        clickedButton.setAttributedTitle(NSAttributedString(string: clickedButton.attributedTitle(for: .normal)!.string, attributes: selectedAttributes), for: .normal)
+    }
+    
+    /**
+     Adds button on screen
+    */
     private func addSubviews() {
         
         for key in weekDays {
             let but = UIButton(type: .system)
-            but.setTitle(key, for: .normal)
+            //but.setTitle(key, for: .normal)
+            but.setAttributedTitle(NSAttributedString(string: key, attributes: defaultAttributes), for: .normal)
             but.setTitleColor(UIColor.lightText, for: .normal)
             
             but.clipsToBounds = true
@@ -51,33 +102,18 @@ class DaySelectionController: UIViewController {
         
         stackView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.6).isActive = true
         stackView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.5).isActive = true
-        
+        chooseButton(clickedButton: buttons[currentChosenDay])
     }
     
+    /**
+     Handles tap on button
+    */
     @objc func dayButtonOnClick(_ sender: Any?) {
-        let index = self.buttons.index(of: sender as! UIButton)!
-        
+        let clickedButton = sender as! UIButton
+        chooseButton(clickedButton: clickedButton)
+        let index = buttons.index(of: clickedButton)!
         delegate?.onDayChosen(day: index)
     }
-    
-    /*let navBarView: UIView = {
-       let view = UIView()
-        view.backgroundColor = UIColor.init(red: 1, green: 1, blue: 1, alpha: 0.1)
-        
-        
-        return view
-    }()
-    
-    lazy var backButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Back", for: .normal)
-        button.setTitleColor(UIColor.lightText, for: .normal)
-        button.addTarget(self, action: #selector(backButtonOnClick), for: .touchUpInside)
-        
-        return button
-    }()
-    */
-    
     
     @objc func backButtonOnClick() {
         self.dismiss(animated: true, completion: nil)
@@ -87,11 +123,17 @@ class DaySelectionController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 0.15, green: 0.05, blue: 0.02, alpha: 1.0)
         self.navigationItem.title = "Выбор дня"
-        /*self.view.addSubview(navBarView)
-        self.navBarView.anchor(top: self.view.topAnchor, left: self.view.leftAnchor, bottom: nil, right: self.view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 85)
-        self.navBarView.addSubview(backButton)
-        backButton.anchor(top: nil, left: self.navBarView.leftAnchor, bottom: self.navBarView.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 10, paddingBottom: 2, paddingRight: 0, width: 0, height: 0)*/
-        
         addSubviews()
+    }
+    /**
+     Initializes controller with current chosen day
+    */
+    init(chosenDay: Int) {
+        self.currentChosenDay = chosenDay
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 }
