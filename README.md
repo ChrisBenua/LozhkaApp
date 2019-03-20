@@ -1,13 +1,13 @@
 <a href="https://github.com/ChrisBenua/LozhkaApp"><img src="https://raw.githubusercontent.com/ChrisBenua/LozhkaApp/master/LozhkaApp/Assets.xcassets/shopping-cart.imageset/shopping-cart%403x.png" title="Lozhka App" alt="Lozhka App"></a>
 # Lozhka App
 
-Программа для IOS предоставляющая пользователю полное меню столовой университета.
+Программа для iOS предоставляющая пользователю полное меню столовой университета.
 
 ## Возможности приложения
 
 ## Начинаем
 
-Устанавливаете как обычный проект и собираете его под свой емулятор/ios устройство.
+Устанавливаете как обычный проект и собираете его под свой эмулятор/ios устройство.
 
 ### Пререквизиты
 
@@ -20,13 +20,13 @@
 
 ## Версии
 
-У приложения есть только одна версия.
+Release 1.0.0
 
 ## Авторы
 
-* **Ivan Lebedev** - *Initial work* - [IvanLebedev](https://github.com/gudleyd)
-* **Christian** - *Initial work* - [ChrisBenua](https://github.com/ChrisBenua)
+* **Christian Benua** - *Coding* - [ChrisBenua](https://github.com/ChrisBenua)
 * **Dima Zapolsky** - *Design* - [Dima](https://github.com/DimaZapolsky)
+* **Ivan Lebedev** - *Data preparation* - [IvanLebedev](https://github.com/gudleyd)
 
 ## Благодарности
 
@@ -38,3 +38,4 @@
 
 - **Зачем это?**
     - Отборочное задание на хакатон.
+    - Практика
