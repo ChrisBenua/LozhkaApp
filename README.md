@@ -27,7 +27,7 @@
 * **Christian** - *Initial work* - [ChrisBenua](https://github.com/ChrisBenua)
 * **Dima Zapolsky** - *Design* - [Dima](https://github.com/DimaZapolsky)
 
-## Acknowledgments
+## Благодарности
 
 * Организаторам хакатона за такую возможность.
 * Маме, папе, друзьям за поддержку.
