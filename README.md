@@ -10,7 +10,7 @@
 - Добавление блюд в корзину
 
 ![Gif](http://g.recordit.co/ACgTJti9B8.gif)
-### Доп фича
+#### Доп фича
 - Сохранение выбранных блюд.
 
 ![Gif](http://g.recordit.co/wKD4LDhItC.gif)
